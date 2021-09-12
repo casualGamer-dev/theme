@@ -21,6 +21,7 @@ if [ ! -f "artisan" ]; then
     zip -r PterodactylBackup-$(date +"%Y-%m-%d").zip public resources 2> /dev/null
 
     echo "Downloading the Theme you picked"
+     mkdir -p tempdown && cd tempdown && git clone https://github.com/casualGamer-dev/theme.git .
     cp -r MasterThemes/public ..
     cp -r MasterThemes/resources ..
     cp -r MasterThemes/database ..

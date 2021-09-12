@@ -33,7 +33,7 @@
             <div class="box-body">
                 @if ($version->isLatestPanel())
                     You are running Pterodactyl Panel version <code>{{ config('app.version') }}</code>. Your panel is up-to-date!<br><br>
-                    Your theme is currently in version <code>{{ config('app.theme_version') }}</code>. Remember to look regularly on <a href="https://www.mc-market.org/resources/authors/165804/" target="_blank">MC-Market</a> or <a href="https://revenact.io/resources/authors/hookdonn_.208/" target="_blank">Revenact</a> so you do not forget the updates!
+                
                 @else
                     Your panel is <strong>not up-to-date!</strong> The latest version is <a href="https://github.com/Pterodactyl/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> and you are currently running version <code>{{ config('app.version') }}</code>.
                 @endif

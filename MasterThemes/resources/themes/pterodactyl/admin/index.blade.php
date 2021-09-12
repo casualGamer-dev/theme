@@ -32,7 +32,7 @@
             </div>
             <div class="box-body">
                 @if ($version->isLatestPanel())
-                    You are running Pterodactyl Panel version <code>{{ config('app.version') }}</code>. Your panel is up-to-date!
+                    You are running Pterodactyl Panel version <code>{{ config('app.version') }}</code>. Your panel is up-to-date!<br><br>
                 @else
                     Your panel is <strong>not up-to-date!</strong> The latest version is <a href="https://github.com/Pterodactyl/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> and you are currently running version <code>{{ config('app.version') }}</code>.
                 @endif
@@ -41,18 +41,22 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-6 col-sm-3 text-center">
-        <a href="{{ $version->getDiscord() }}"><button class="btn btn-warning" style="width:100%;"><i class="fa fa-fw fa-support"></i> Get Help <small>(via Discord)</small></button></a>
+    <div class="col-xs-6 col-sm-2 text-center">
+        <a href="{{ $version->getDiscord() }}" target="_blank"><button class="btn btn-warning" style="width:100%;"><i class="fa fa-fw fa-support"></i> Get Help <small>(via Discord)</small></button></a>
     </div>
-    <div class="col-xs-6 col-sm-3 text-center">
-        <a href="https://docs.pterodactyl.io"><button class="btn btn-primary" style="width:100%;"><i class="fa fa-fw fa-link"></i> Documentation</button></a>
+    <div class="col-xs-6 col-sm-2 text-center">
+        <a href="http://discordapp.com/invite/DVCCgbx" target="_blank"><button class="btn btn-danger" style="width:100%;"><i class="fa fa-fw fa-comments"></i> Support for Theme</button></a>
     </div>
     <div class="clearfix visible-xs-block">&nbsp;</div>
-    <div class="col-xs-6 col-sm-3 text-center">
-        <a href="https://github.com/Pterodactyl/Panel"><button class="btn btn-primary" style="width:100%;"><i class="fa fa-fw fa-support"></i> Github</button></a>
+    <div class="col-xs-6 col-sm-2 text-center">
+        <a href="https://docs.pterodactyl.io" target="_blank"><button class="btn btn-primary" style="width:100%;"><i class="fa fa-fw fa-link"></i> Documentation</button></a>
     </div>
-    <div class="col-xs-6 col-sm-3 text-center">
-        <a href="https://donorbox.org/pterodactyl"><button class="btn btn-success" style="width:100%;"><i class="fa fa-fw fa-money"></i> Support the Project</button></a>
+    <div class="col-xs-6 col-sm-2 text-center">
+        <a href="https://github.com/Pterodactyl/Panel" target="_blank"><button class="btn btn-primary" style="width:100%;"><i class="fa fa-fw fa-support"></i> Github</button></a>
+    </div>
+    <div class="clearfix visible-xs-block">&nbsp;</div>
+    <div class="col-xs-6 col-sm-2 text-center">
+        <a href="https://donorbox.org/pterodactyl" target="_blank"><button class="btn btn-success" style="width:100%;"><i class="fa fa-fw fa-money"></i> Support the Project</button></a>
     </div>
 </div>
 @endsection

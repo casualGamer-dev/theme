@@ -114,7 +114,7 @@
     @parent
     <script>
         $('#deleteButton').on('mouseenter', function (event) {
-            $(this).find('i').html(' Delete Nest');
+            $(this).find('i').html('&nbsp;&nbsp;<font face="Open Sans">Delete Nest</font>');
         }).on('mouseleave', function (event) {
             $(this).find('i').html('');
         });

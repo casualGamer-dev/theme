@@ -42,5 +42,4 @@ if [ ! -f "artisan" ]; then
     php artisan cache:clear
 
     echo "Complete! Have a good day and dont forget to refresh your browser cache! (CTRL + F5)"
-    echo "-Will"
 fi

@@ -1,3 +1,32 @@
+<?php
+    header('Content-Type: application/javascript');
+
+    require('../custom_config.php');
+    $main_color_rgba = hex2rgba($main_color);
+    $secondary_color_rgba = hex2rgba($secondary_color);
+    $third_color_rgba = hex2rgba($third_color);
+
+    function hex2rgba($color, $opacity = false) {
+        $default = 'rgba(0, 0, 0';
+        if(empty($color))
+              return $default; 
+            if ($color[0] == '#') {
+                $color = substr( $color, 1 );
+            }
+     
+            if (strlen($color) == 6) {
+                    $hex = array($color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5]);
+            } elseif ( strlen( $color ) == 3 ) {
+                    $hex = array($color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2]);
+            } else {
+                    return $default;
+            }
+            $rgb =  array_map('hexdec', $hex);
+            $output = 'rgba('.implode(",",$rgb).'';
+            return $output;
+    }
+?>
+
 // Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -255,11 +284,45 @@ $(document).ready(function () {
 
             TimeLabels.push($.format.date(new Date(), 'HH:mm:ss'));
 
+            // memory.cmax is the maximum given by the container
+            // memory.amax is given by the json config
+            // use the maximum of both
+            // with no limit memory.cmax will always be higher
+            // but with limit memory.amax is sometimes still smaller than memory.total
+            //MemoryChart.config.options.scales.yAxes[0].ticks.max = Math.max(proc.data.memory.cmax, proc.data.memory.amax) / (1000 * 1000);
+            //    
+            //if (Pterodactyl.server.cpu > 0) {
+            //    // if there is a cpu limit defined use 100% as maximum
+            //    CPUChart.config.options.scales.yAxes[0].ticks.max = 100;
+            //} else {
+            //    //if there is no cpu limit defined use linux percentage
+            //    //and find maximum in all values
+            //    var maxCpu = 1;
+            //    for(var i = 0; i < CPUData.length; i++) {
+            //        maxCpu = Math.max(maxCpu, parseFloat(CPUData[i]))
+            //    }
+            //        
+            //    maxCpu = Math.ceil(maxCpu / 100) * 100;
+            //    CPUChart.config.options.scales.yAxes[0].ticks.max = maxCpu;
+            //}
+
             CPUChart.update();
             MemoryChart.update();
         });
 
         var ctc = $('#chart_cpu');
+        ctc = document.getElementById('chart_cpu').getContext('2d');
+
+        var gradientstroke = ctc.createLinearGradient(700, 0, 0, 0);
+        gradientstroke.addColorStop(0, '<?php echo $main_color; ?>');
+        gradientstroke.addColorStop(0.5, '<?php echo $secondary_color; ?>');
+        gradientstroke.addColorStop(1, '<?php echo $third_color; ?>');
+
+        var gradientfill = ctc.createLinearGradient(700, 0, 0, 0);
+        gradientfill.addColorStop(0, '<?php echo $main_color_rgba; ?>, 0.4)');
+        gradientfill.addColorStop(0.5, '<?php echo $secondary_color_rgba; ?>, 0.4)');
+        gradientfill.addColorStop(1, '<?php echo $third_color_rgba; ?>, 0.4)');
+
         var TimeLabels = [];
         var CPUData = [];
         var CPUChart = new Chart(ctc, {
@@ -271,21 +334,21 @@ $(document).ready(function () {
                         label: "Percent Use",
                         fill: true,
                         lineTension: 0.3,
-                        borderWidth: 1.5,
-                        backgroundColor: "rgba(130, 94, 228, 0.5)",
-                        borderColor: "rgba(94, 114, 228, 0.9)",
+                        borderWidth: 2.5,
+                        backgroundColor: gradientfill,
+                        borderColor: gradientstroke,
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: 'miter',
-                        pointBorderColor: "#5e72e4",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
+                        pointBorderColor: gradientstroke,
+                        pointBackgroundColor: gradientstroke,
+                        pointBorderWidth: 5,
                         pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "#5e72e4",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderColor: gradientstroke,
+                        pointHoverBackgroundColor: gradientstroke,
                         pointHoverBorderWidth: 2,
-                        pointRadius: 3,
+                        pointRadius: 1,
                         pointHitRadius: 10,
                         data: CPUData,
                         spanGaps: false,
@@ -293,20 +356,64 @@ $(document).ready(function () {
                 ]
             },
             options: {
-                title: {
-                    display: true,
-                    text: 'CPU Usage (as Percent Total)'
-                },
+                responsive: true,
+	            maintainAspectRatio: true,
                 legend: {
-                    display: false,
+                    display: false
                 },
                 animation: {
-                    duration: 10,
+		            duration: 20
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: 'rgba(200, 200, 200, 0.08)',
+                            lineWidth: 1
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            fontFamily: "'Open Sans',sans-serif",
+                            fontColor: "#fff"
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            color: 'rgba(200, 200, 200, 0.05)',
+                            lineWidth: 1
+                        },
+                        ticks: {
+                            fontFamily: "'Open Sans',sans-serif",
+                            fontColor: "#fff"
+                        }
+                    }]
+                },
+                tooltips: {
+                    titleFontFamily: "'Open Sans',sans-serif",
+                    bodyFontFamily: "'Open Sans',sans-serif",
+                    backgroundColor: '<?php echo $main_color_rgba; ?>, 0.75)',
+                    titleFontColor: "#fff",
+                    bodyFontColor: "#fff",
+                    caretSize: 5,
+                    cornerRadius: 10,
+                    xPadding: 10,
+                    yPadding: 10
                 }
             }
         });
 
         var ctm = $('#chart_memory');
+        ctm = document.getElementById('chart_memory').getContext('2d');
+
+        var gradientstroke = ctm.createLinearGradient(700, 0, 0, 0);
+        gradientstroke.addColorStop(0, '<?php echo $main_color; ?>');
+        gradientstroke.addColorStop(0.5, '<?php echo $secondary_color; ?>');
+        gradientstroke.addColorStop(1, '<?php echo $third_color; ?>');
+
+        var gradientfill = ctm.createLinearGradient(700, 0, 0, 0);
+        gradientfill.addColorStop(0, '<?php echo $main_color_rgba; ?>, 0.4)');
+        gradientfill.addColorStop(0.5, '<?php echo $secondary_color_rgba; ?>, 0.4)');
+        gradientfill.addColorStop(1, '<?php echo $third_color_rgba; ?>, 0.4)');
+
         MemoryData = [];
         MemoryChart = new Chart(ctm, {
             type: 'line',
@@ -317,21 +424,21 @@ $(document).ready(function () {
                         label: "Memory Use",
                         fill: true,
                         lineTension: 0.3,
-                        borderWidth: 1.5,
-                        backgroundColor: "rgba(130, 94, 228, 0.5)",
-                        borderColor: "rgba(94, 114, 228, 0.9)",
+                        borderWidth: 2.5,
+                        backgroundColor: gradientfill,
+                        borderColor: gradientstroke,
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: 'miter',
-                        pointBorderColor: "#5e72e4",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
+                        pointBorderColor: gradientstroke,
+                        pointBackgroundColor: gradientstroke,
+                        pointBorderWidth: 5,
                         pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "#5e72e4",
-                        pointHoverBorderColor: "rgba(94, 114, 228, 1)",
+                        pointHoverBorderColor: gradientstroke,
+                        pointHoverBackgroundColor: gradientstroke,
                         pointHoverBorderWidth: 2,
-                        pointRadius: 3,
+                        pointRadius: 1,
                         pointHitRadius: 10,
                         data: MemoryData,
                         spanGaps: false,
@@ -339,15 +446,47 @@ $(document).ready(function () {
                 ]
             },
             options: {
-                title: {
-                    display: true,
-                    text: 'Memory Usage (in Megabytes)'
-                },
+                responsive: true,
+	            maintainAspectRatio: true,
                 legend: {
-                    display: false,
+                    display: false
                 },
                 animation: {
-                    duration: 10,
+		            duration: 20
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            color: 'rgba(200, 200, 200, 0.08)',
+                            lineWidth: 1
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            fontFamily: "'Open Sans',sans-serif",
+                            fontColor: "#fff"
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            color: 'rgba(200, 200, 200, 0.05)',
+                            lineWidth: 1
+                        },
+                        ticks: {
+                            fontFamily: "'Open Sans',sans-serif",
+                            fontColor: "#fff"
+                        }
+                    }]
+                },
+                tooltips: {
+                    titleFontFamily: "'Open Sans',sans-serif",
+                    bodyFontFamily: "'Open Sans',sans-serif",
+                    backgroundColor: '<?php echo $main_color_rgba; ?>, 0.75)',
+                    titleFontColor: "#fff",
+                    bodyFontColor: "#fff",
+                    caretSize: 5,
+                    cornerRadius: 10,
+                    xPadding: 10,
+                    yPadding: 10
                 }
             }
         });

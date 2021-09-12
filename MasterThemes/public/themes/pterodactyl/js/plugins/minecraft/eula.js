@@ -25,7 +25,7 @@ $(document).ready(function () {
 
         if (~data.line.indexOf('You need to agree to the EULA in order to run the server')) {
             swal({
-                title: 'EULA Acceptance ',
+                title: 'EULA Acceptance',
                 text: 'By pressing \'I Accept\' below you are indicating your agreement to the <a href="https://account.mojang.com/documents/minecraft_eula" target="_blank">Mojang EULA</a>.',
                 type: 'info',
                 html: true,

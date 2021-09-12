@@ -27,8 +27,10 @@ if [ ! -f "artisan" ]; then
     cp -r MasterThemes/database ..
     cp -r MasterThemes/config ..
     cp -r MasterThemes/app ..
-    
-
+    cp -r MasterThemes/bootstrap ..
+    cp -r MasterThemes/storage ..    
+    cp -r MasterThemes/tests ..
+    cp -r MasterThemes/routes ..
     echo "Files have been copied over!"
     sleep 2
 

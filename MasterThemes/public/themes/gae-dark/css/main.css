@@ -71,7 +71,7 @@ textarea:focus::-moz-placeholder { color:transparent; }
 textarea:focus:-ms-input-placeholder { color:transparent; }
 
 input::-webkit-input-placeholder { color: #999999; }
-input:-moz-placeholder { color: #999999; }
+input:-moz-placeholder { color: #706f6f; }
 input::-moz-placeholder { color: #999999; }
 input:-ms-input-placeholder { color: #999999; }
 
@@ -85,10 +85,12 @@ button {
 	outline: none !important;
 	border: none;
 	background: transparent;
+  box-shadow: 5px 10px 8px #ff9e30;
 }
 
 button:hover {
 	cursor: pointer;
+  
 }
 
 iframe {
@@ -141,6 +143,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 177px 130px 33px 95px;
+  box-shadow: 5px 10px 8px #ff9e30;
 }
 
 /*------------------------------------------------------------------

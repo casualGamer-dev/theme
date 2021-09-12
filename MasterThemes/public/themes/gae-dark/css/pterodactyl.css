@@ -77,12 +77,14 @@ body {
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid #000;
     border-radius: 2px;
+    box-shadow: 5px 10px 8px #ff9e30;
     color: #fff;
 }
 
 .pterodactyl-login-button--main:hover {
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid #000;
+    box-shadow: 5px 10px 8px #ff9e30;
     border-radius: 2px;
     color: #fff;
 }
@@ -99,6 +101,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 2px;
     color: #fff;
+    box-shadow: 5px 10px 8px #ff9e30;
 }
 
 .weight-100 {

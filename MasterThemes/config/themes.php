@@ -27,11 +27,11 @@ return [
     | Theme::set('theme-name');
     |--------------------------------------------------------------------------
     */
-    'default' => env('APP_THEME', 'gae-dark'),
+    'default' => env('APP_THEME', 'pterodactyl'),
 
     /*
     |--------------------------------------------------------------------------
-    | Cache theme.json configuration files that ar  e located in each theme's folder
+    | Cache theme.json configuration files that are located in each theme's folder
     | in order to avoid searching theme settings in the filesystem for each request
     |--------------------------------------------------------------------------
     */

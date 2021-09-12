@@ -21,11 +21,11 @@ if [ ! -f "artisan" ]; then
     zip -r PterodactylBackup-$(date +"%Y-%m-%d").zip public resources 2> /dev/null
 
     echo "Downloading the Theme you picked"
-    cp -r MasterThemes/gae-ui/public ..
-    cp -r MasterThemes/gae-ui/resources ..
-    cp -r MasterThemes/gae-ui/database ..
-    cp -r MasterThemes/gae-ui/config ..
-    cp -r MasterThemes/gae-ui/app ..
+    cp -r MasterThemes/public ..
+    cp -r MasterThemes/resources ..
+    cp -r MasterThemes/database ..
+    cp -r MasterThemes/config ..
+    cp -r MasterThemes/app ..
     
 
     echo "Files have been copied over!"

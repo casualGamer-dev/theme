@@ -124,7 +124,7 @@ curl -o index.tsx https://raw.githubusercontent.com/casualGamer-dev/theme/main/M
 cd
 cd /var/www/pterodactyl/resources/views/layouts
 rm -R admin.blade.php
-curl -o admin.blade.php hhttps://raw.githubusercontent.com/casualGamer-dev/theme/main/MasterThemes/admin.blade.php
+curl -o admin.blade.php https://raw.githubusercontent.com/casualGamer-dev/theme/main/MasterThemes/admin.blade.php
 cd
 cd /var/www/pterodactyl/public/themes/pterodactyl/css
 curl -o admin.css https://raw.githubusercontent.com/casualGamer-dev/theme/main/MasterThemes/admin.css

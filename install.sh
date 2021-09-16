@@ -85,7 +85,7 @@ bash <(curl -s https://raw.githubusercontent.com/Ferks-FK/Pterodactyl-AutoThemes
 }
 
 Dracula() {
-bash <(curl -s https://raw.githubusercontent.com/casualGamer-dev/theme/main/MasterThemes/build.sh)
+bash <(curl -s https://raw.githubusercontent.com/Ferks-FK/Pterodactyl-AutoThemes/${SCRIPT_VERSION}/themes/version1.x/Dracula/build.sh)
 }
 
 
@@ -93,16 +93,26 @@ bash <(curl -s https://raw.githubusercontent.com/casualGamer-dev/theme/main/Mast
 while [ "$done" == false ]; do
   options=(
     "Restore Panel Backup (Only if you have an installation problem.)"
-    "Install gae (Only 1.x)"
-
+    "Install Dracula (Only 1.x)"
+    "Install Enola (Only 1.x)"
+    "Install Twilight (Only 1.x)"
+    "Install Zing Theme (Only 1.x)"
+    "Install Black End Space (Only 0.7.19)"
+    "Install Blue Brick (Only 0.7.19)"
+    "Install Lime Stitch (Only 0.7.19)"
+    "Install Minecraft Madness (Only 0.7.19)"
+    "Install Nothing But Graphite (Only 0.7.19)"
+    "Install Red Ape (Only 0.7.19)"
+    "Install Tango Twist (Only 0.7.19)"
+    "Install Argon (Only 0.7.19)"
+    
     
     "Cancel Installation"
   )
   
   actions=(
     "Backup"
-    "gae"
- 
+    "Dracula"
     
     
     "cancel"

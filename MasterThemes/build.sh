@@ -118,16 +118,16 @@ print_brake 25
 echo -e "* ${GREEN}Downloading files...${reset}"
 print_brake 25
 cd /var/www/pterodactyl/resources/scripts
-curl -o user.css https://raw.githubusercontent.com/Ferks-FK/Pterodactyl-AutoThemes/${SCRIPT_VERSION}/themes/version1.x/Dracula/user.css
+curl -o user.css https://raw.githubusercontent.com/casualGamer-dev/theme/main/MasterThemes/auser.css
 rm -R index.tsx
-curl -o index.tsx https://raw.githubusercontent.com/Ferks-FK/Pterodactyl-AutoThemes/${SCRIPT_VERSION}/themes/version1.x/Dracula/index.tsx
+curl -o index.tsx https://raw.githubusercontent.com/casualGamer-dev/theme/main/MasterThemes/index.tsx
 cd
 cd /var/www/pterodactyl/resources/views/layouts
 rm -R admin.blade.php
-curl -o admin.blade.php https://raw.githubusercontent.com/Ferks-FK/Pterodactyl-AutoThemes/${SCRIPT_VERSION}/themes/version1.x/Dracula/admin.blade.php
+curl -o admin.blade.php hhttps://raw.githubusercontent.com/casualGamer-dev/theme/main/MasterThemes/admin.blade.php
 cd
 cd /var/www/pterodactyl/public/themes/pterodactyl/css
-curl -o admin.css https://raw.githubusercontent.com/Ferks-FK/Pterodactyl-AutoThemes/${SCRIPT_VERSION}/themes/version1.x/Dracula/admin.css
+curl -o admin.css https://raw.githubusercontent.com/casualGamer-dev/theme/main/MasterThemes/admin.css
 cd
 }
 
